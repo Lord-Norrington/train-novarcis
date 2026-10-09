@@ -1,0 +1,667 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SNCN — Société Nationale des Chemins de Fer Novarciens</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #0a1118;
+      --navy-royal: #111d2b;
+      --navy-accent: #1c2d42;
+      --gold-primary: #c5a059;
+      --gold-light: #e6c88b;
+      --gold-dark: #8c6d33;
+      --paper-bg: #f8f6f0;
+      --card-bg: #ffffff;
+      --text-main: #1e293b;
+      --border-gold: rgba(197, 160, 89, 0.4);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      color: var(--text-main);
+      background: var(--paper-bg);
+      background-image: radial-gradient(rgba(197, 160, 89, 0.08) 1px, transparent 0);
+      background-size: 24px 24px;
+    }
+
+    header {
+      background: linear-gradient(180deg, var(--bg-dark) 0%, var(--navy-royal) 100%);
+      color: white;
+      border-bottom: 3px solid var(--gold-primary);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    }
+
+    header::after {
+      content: '';
+      display: block;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
+    }
+
+    .top-header {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 24px;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .brand-container { display: flex; align-items: center; gap: 18px; }
+    .logo-sncn { height: 55px; object-fit: contain; mix-blend-mode: lighten; }
+
+    .coat-container {
+      background: rgba(28, 45, 66, 0.6);
+      border: 1px solid var(--border-gold);
+      border-radius: 6px;
+      padding: 6px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
+    }
+
+    .coat-of-arms {
+      height: 90px;
+      object-fit: contain;
+      filter: drop-shadow(0 3px 8px rgba(0,0,0,0.7));
+    }
+
+    .brand-title {
+      font-family: 'Cinzel', serif;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: var(--gold-light);
+      text-transform: uppercase;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    }
+
+    .brand-sub {
+      font-size: 11px;
+      color: #cbd5e1;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    nav { background: var(--navy-accent); border-top: 1px solid var(--border-gold); }
+    .nav-links { max-width: 1200px; margin: auto; display: flex; gap: 4px; flex-wrap: wrap; }
+    
+    .nav-btn {
+      background: transparent;
+      border: none;
+      color: #e2e8f0;
+      padding: 16px 22px;
+      font-family: 'Cinzel', serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .nav-btn:hover, .nav-btn.active {
+      color: var(--gold-light);
+      background: rgba(197, 160, 89, 0.15);
+    }
+
+    .nav-btn.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--gold-primary);
+    }
+
+    .hero {
+      background: linear-gradient(rgba(10, 17, 24, 0.85), rgba(17, 29, 43, 0.9)),
+                  radial-gradient(circle at center, #1c2d42 0%, #0a1118 100%);
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+      border-bottom: 1px solid var(--border-gold);
+    }
+
+    .hero h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 32px;
+      margin: 0 0 10px;
+      color: var(--gold-light);
+      letter-spacing: 2px;
+    }
+
+    .hero p { margin: 0; color: #94a3b8; font-size: 15px; font-style: italic; }
+
+    .wrap { max-width: 1200px; margin: auto; padding: 0 15px; }
+    .columns { display: grid; grid-template-columns: minmax(320px, 420px) 1fr; gap: 25px; margin-top: 30px; margin-bottom: 40px; }
+
+    .panel {
+      background: var(--card-bg);
+      border: 1px solid var(--border-gold);
+      border-radius: 6px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .panel::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 4px;
+      background: linear-gradient(90deg, var(--gold-dark), var(--gold-light), var(--gold-dark));
+    }
+
+    .panel-header {
+      padding: 20px;
+      background: #f1f5f9;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .panel-title {
+      font-family: 'Cinzel', serif;
+      font-size: 18px;
+      margin: 0;
+      color: var(--navy-royal);
+      letter-spacing: 1px;
+    }
+
+    .planner-body { padding: 22px; }
+    .field-group { margin-bottom: 20px; }
+    .field-group label {
+      display: block;
+      font-family: 'Cinzel', serif;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--navy-royal);
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+    }
+
+    .select-custom {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      font-size: 14px;
+      background: #fafafa;
+      color: var(--text-main);
+      transition: border-color 0.2s;
+    }
+
+    .select-custom:focus {
+      outline: none;
+      border-color: var(--gold-primary);
+      background: #fff;
+    }
+
+    .btn-search {
+      width: 100%;
+      background: linear-gradient(180deg, var(--navy-accent) 0%, var(--navy-royal) 100%);
+      color: var(--gold-light);
+      border: 1px solid var(--gold-primary);
+      padding: 14px;
+      font-family: 'Cinzel', serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+
+    .btn-search:hover {
+      background: var(--navy-accent);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+      border-color: var(--gold-light);
+    }
+
+    .result-box {
+      padding: 22px;
+      background: #fafbfc;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    .leg-card {
+      background: white;
+      border-left: 4px solid var(--gold-primary);
+      border-radius: 4px;
+      padding: 14px 16px;
+      margin: 12px 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      border-top: 1px solid #f1f5f9;
+      border-right: 1px solid #f1f5f9;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .city-badge-container { display: flex; align-items: center; gap: 10px; margin: 8px 0; }
+    .city-badge { height: 32px; width: 32px; object-fit: contain; }
+
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    .line-card-expandable {
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+
+    .line-card-expandable:hover { border-color: var(--gold-primary); }
+
+    .line-card-header {
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      background: #ffffff;
+      user-select: none;
+    }
+
+    .line-tag {
+      color: white;
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 3px;
+      font-size: 12px;
+      letter-spacing: 1px;
+    }
+
+    .line-card-details {
+      padding: 20px;
+      background: #f8fafc;
+      border-top: 1px solid #e2e8f0;
+      display: none;
+    }
+
+    .line-card-expandable.open .line-card-details { display: block; }
+
+    .detail-row { margin-bottom: 10px; font-size: 14px; }
+    .detail-row strong { color: var(--navy-royal); font-family: 'Cinzel', serif; font-size: 12px; }
+
+    .map-container {
+      text-align: center;
+      padding: 15px;
+      background: #0d1722;
+      border-radius: 6px;
+      border: 1px solid var(--border-gold);
+    }
+
+    .map-image {
+      max-width: 100%;
+      height: auto;
+      border-radius: 4px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    }
+
+    footer {
+      background: var(--bg-dark);
+      color: #94a3b8;
+      padding: 30px 20px;
+      font-size: 12px;
+      border-top: 2px solid var(--gold-primary);
+      margin-top: 60px;
+    }
+
+    footer .wrap { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+
+    @media (max-width: 850px) {
+      .columns { grid-template-columns: 1fr; }
+      .brand-title { font-size: 18px; }
+      .coat-of-arms { height: 70px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="top-header">
+    <div class="brand-container">
+      <img src="logo.jpg" alt="Logo SNCN" class="logo-sncn">
+      <div>
+        <div class="brand-title">Société Nationale des Chemins de Fer</div>
+        <div class="brand-sub">Royaume-Uni de Novarcis</div>
+      </div>
+    </div>
+    <div class="coat-container">
+      <img src="armoiries.jpg" alt="Armoiries de Novarcis" class="coat-of-arms">
+    </div>
+  </div>
+
+  <nav>
+    <div class="nav-links">
+      <button class="nav-btn active" onclick="switchTab('tab-planner', this)">Calculateur d'itinéraire</button>
+      <button class="nav-btn" onclick="switchTab('tab-metropole', this)">Réseau Métropole</button>
+      <button class="nav-btn" onclick="switchTab('tab-continent', this)">Réseau Continent</button>
+      <button class="nav-btn" onclick="switchTab('tab-map', this)">Carte du Royaume</button>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <h1>Lignes & Transports du Royaume</h1>
+    <p>« Unissant les Provinces, les Villes et le Continent sous une même bannière. »</p>
+  </div>
+</section>
+
+<main class="wrap">
+  <div id="tab-planner" class="tab-content active">
+    <div class="columns">
+      <section class="panel">
+        <div class="panel-header">
+          <h2 class="panel-title">Planifier un trajet</h2>
+        </div>
+        <div class="planner-body">
+          <div class="field-group">
+            <label for="from">Gare de départ</label>
+            <select id="from" class="select-custom"></select>
+          </div>
+          <div class="field-group">
+            <label for="to">Gare d'arrivée</label>
+            <select id="to" class="select-custom"></select>
+          </div>
+          <button class="btn-search" onclick="planJourney()">Rechercher l'itinéraire</button>
+        </div>
+        <div id="result" class="result-box">
+          <span style="color:#64748b; font-size:13px; font-style:italic;">
+            Sélectionnez votre gare de départ et votre destination pour afficher la feuille de route.
+          </span>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <h2 class="panel-title">Aperçu du réseau ferroviaire</h2>
+        </div>
+        <div style="padding: 22px;" id="network-overview"></div>
+      </section>
+    </div>
+  </div>
+
+  <div id="tab-metropole" class="tab-content">
+    <div class="panel" style="margin-top: 30px;">
+      <div class="panel-header">
+        <h2 class="panel-title">Lignes Métropolitaines (Cliquez sur une ligne pour voir le détail)</h2>
+      </div>
+      <div style="padding: 22px;">
+
+        <div class="line-card-expandable" onclick="toggleDetails(this)">
+          <div class="line-card-header">
+            <div style="display:flex; align-items:center; gap:15px;">
+              <span class="line-tag" style="background:#b91c1c;">Ligne 1</span>
+              <strong style="font-size:16px; color:var(--navy-royal);">Ligne Rovère — Villefort</strong>
+            </div>
+            <span style="color:var(--gold-primary); font-weight:bold;">▼</span>
+          </div>
+          <div class="line-card-details">
+            <div class="detail-row"><strong>Type de matériel :</strong> Train régional à vapeur léger</div>
+            <div class="detail-row"><strong>Gares desservies :</strong> Gare centrale de Rovère-sur-Lys ↔ Villefort</div>
+            <div class="detail-row"><strong>Temps de trajet estimé :</strong> 10 minutes</div>
+          </div>
+        </div>
+
+        <div class="line-card-expandable" onclick="toggleDetails(this)">
+          <div class="line-card-header">
+            <div style="display:flex; align-items:center; gap:15px;">
+              <span class="line-tag" style="background:#1d4ed8;">Ligne 2</span>
+              <strong style="font-size:16px; color:var(--navy-royal);">Ligne Rovère — Far Vegas</strong>
+            </div>
+            <span style="color:var(--gold-primary); font-weight:bold;">▼</span>
+          </div>
+          <div class="line-card-details">
+            <div class="detail-row"><strong>Type de matériel :</strong> Rame automotrice électrique moderne</div>
+            <div class="detail-row"><strong>Gares desservies :</strong> Gare centrale de Rovère-sur-Lys ↔ Far Vegas</div>
+            <div class="detail-row"><strong>Temps de trajet estimé :</strong> 10 minutes</div>
+          </div>
+        </div>
+
+        <div class="line-card-expandable" onclick="toggleDetails(this)">
+          <div class="line-card-header">
+            <div style="display:flex; align-items:center; gap:15px;">
+              <span class="line-tag" style="background:#15803d;">Ligne 3</span>
+              <strong style="font-size:16px; color:var(--navy-royal);">Ligne Rovère — Édimbourg</strong>
+            </div>
+            <span style="color:var(--gold-primary); font-weight:bold;">▼</span>
+          </div>
+          <div class="line-card-details">
+            <div class="detail-row"><strong>Type de matériel :</strong> Express de ligne principale à grande vapeur</div>
+            <div class="detail-row"><strong>Gares desservies :</strong> Gare centrale de Rovère-sur-Lys ↔ Édimbourg</div>
+            <div class="detail-row"><strong>Temps de trajet estimé :</strong> 10 minutes</div>
+          </div>
+        </div>
+
+        <div class="line-card-expandable" onclick="toggleDetails(this)">
+          <div class="line-card-header">
+            <div style="display:flex; align-items:center; gap:15px;">
+              <span class="line-tag" style="background:#c2410c;">Ligne 5</span>
+              <strong style="font-size:16px; color:var(--navy-royal);">Ligne Édimbourg — Windsor</strong>
+            </div>
+            <span style="color:var(--gold-primary); font-weight:bold;">▼</span>
+          </div>
+          <div class="line-card-details">
+            <div class="detail-row"><strong>Type de matériel :</strong> Navette régionale électrique courte distance</div>
+            <div class="detail-row"><strong>Gares desservies :</strong> Édimbourg ↔ Windsor</div>
+            <div class="detail-row"><strong>Temps de trajet estimé :</strong> 10 minutes</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div id="tab-continent" class="tab-content">
+    <div class="panel" style="margin-top: 30px;">
+      <div class="panel-header">
+        <h2 class="panel-title">Lignes Transmanche & Continentales</h2>
+      </div>
+      <div style="padding: 22px;">
+
+        <div class="line-card-expandable" onclick="toggleDetails(this)">
+          <div class="line-card-header">
+            <div style="display:flex; align-items:center; gap:15px;">
+              <span class="line-tag" style="background:#6b21a8;">Ligne 4 Eurostar</span>
+              <strong style="font-size:16px; color:var(--navy-royal);">Transmanche Rovère — Königsberg</strong>
+            </div>
+            <span style="color:var(--gold-primary); font-weight:bold;">▼</span>
+          </div>
+          <div class="line-card-details">
+            <div class="detail-row"><strong>Type de matériel :</strong> Express international à traction diesel-électrique</div>
+            <div class="detail-row"><strong>Gares desservies :</strong> Gare Eurostar de Rovère-sur-Lys ↔ Königsberg</div>
+            <div class="detail-row"><strong>Remarque :</strong> Ligne reliant la métropole aux terres continentales (Autriche-Hongrie / Brundberg).</div>
+            <div class="detail-row"><strong>Temps de trajet estimé :</strong> 10 minutes</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div id="tab-map" class="tab-content">
+    <div class="panel" style="margin-top: 30px;">
+      <div class="panel-header">
+        <h2 class="panel-title">Carte Officielle du Réseau Britannique de Chemin de Fer</h2>
+      </div>
+      <div style="padding: 22px;">
+        <div class="map-container">
+          <img src="carte.jpg" alt="Carte du Réseau SNCN" class="map-image">
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© Royaume-Uni de Novarcis — Société Nationale des Chemins de Fer Novarciens</span>
+    <span>Direction Générale des Transports Ferroviaires</span>
+  </div>
+</footer>
+
+<script>
+const cityLogos = {
+  'Gare centrale de Rovère-sur-Lys': 'rovere.jpg',
+  'Gare Eurostar de Rovère-sur-Lys': 'rovere.jpg',
+  'Villefort': 'villefort.jpg',
+  'Far Vegas': 'farvegas.jpg',
+  'Édimbourg': 'edimbourg.jpg',
+  'Königsberg': 'konigsberg.jpg',
+  'Windsor': 'windsor.jpg'
+};
+
+const routes = [
+  { id: 'L1', name: 'Ligne 1 · Rovère ↔ Villefort', color: '#b91c1c', stops: ['Gare centrale de Rovère-sur-Lys', 'Villefort'], times: [600] },
+  { id: 'L2', name: 'Ligne 2 · Rovère ↔ Far Vegas', color: '#1d4ed8', stops: ['Gare centrale de Rovère-sur-Lys', 'Far Vegas'], times: [600] },
+  { id: 'L3', name: 'Ligne 3 · Rovère ↔ Édimbourg', color: '#15803d', stops: ['Gare centrale de Rovère-sur-Lys', 'Édimbourg'], times: [600] },
+  { id: 'L4', name: 'Ligne 4 Eurostar · Transmanche', color: '#6b21a8', stops: ['Gare Eurostar de Rovère-sur-Lys', 'Königsberg'], times: [600] },
+  { id: 'L5', name: 'Ligne 5 · Édimbourg ↔ Windsor', color: '#c2410c', stops: ['Édimbourg', 'Windsor'], times: [600] },
+  { id: 'TRANSFER', name: 'Correspondance Rovère (Transfert)', color: '#475569', stops: ['Gare centrale de Rovère-sur-Lys', 'Gare Eurostar de Rovère-sur-Lys'], times: [180] }
+];
+
+const stations = [...new Set(routes.flatMap(r => r.stops))].sort((a,b) => a.localeCompare(b, 'fr'));
+const fromSelect = document.getElementById('from');
+const toSelect = document.getElementById('to');
+
+function initSelectors() {
+  fromSelect.innerHTML = '<option value="" disabled selected>— Sélectionnez une gare —</option>';
+  toSelect.innerHTML = '<option value="" disabled selected>— Sélectionnez une gare —</option>';
+
+  stations.forEach(s => {
+    fromSelect.add(new Option(s, s));
+    toSelect.add(new Option(s, s));
+  });
+}
+initSelectors();
+
+document.getElementById('network-overview').innerHTML = routes.filter(r => r.id !== 'TRANSFER').map(r => `
+  <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px; padding-bottom:10px; border-bottom:1px solid #f1f5f9;">
+    <span class="line-tag" style="background:${r.color}">${r.id}</span>
+    <span style="font-weight:600; font-size:14px; color:var(--navy-royal);">${r.name}</span>
+  </div>
+`).join('');
+
+function switchTab(tabId, btn) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(tabId).classList.add('active');
+  btn.classList.add('active');
+}
+
+function toggleDetails(element) {
+  element.classList.toggle('open');
+}
+
+function planJourney() {
+  const start = fromSelect.value;
+  const end = toSelect.value;
+  const output = document.getElementById('result');
+
+  if (!start || !end) {
+    output.innerHTML = '<b>Sélection incomplète.</b><p style="color:#64748b; font-size:13px;">Veuillez choisir une gare de départ ET une gare d\'arrivée.</p>';
+    return;
+  }
+
+  if (start === end) {
+    output.innerHTML = '<b>Même gare sélectionnée.</b><p style="color:#64748b; font-size:13px;">Veuillez indiquer deux stations différentes.</p>';
+    return;
+  }
+
+  const graph = {};
+  for (const r of routes) {
+    for (let i = 0; i < r.stops.length - 1; i++) {
+      const u = r.stops[i], v = r.stops[i+1], t = r.times[i];
+      (graph[u] = graph[u] || []).push({ to: v, line: r, time: t });
+      (graph[v] = graph[v] || []).push({ to: u, line: r, time: t });
+    }
+  }
+
+  const pq = [{ station: start, time: 0, steps: [], lastLine: '' }];
+  const best = new Map();
+  let winner = null;
+
+  while (pq.length > 0) {
+    pq.sort((a,b) => a.time - b.time);
+    const curr = pq.shift();
+
+    if ((best.get(curr.station) ?? Infinity) <= curr.time) continue;
+    best.set(curr.station, curr.time);
+
+    if (curr.station === end) {
+      winner = curr;
+      break;
+    }
+
+    for (const edge of (graph[curr.station] || [])) {
+      const penalty = (curr.lastLine && curr.lastLine !== edge.line.id) ? 120 : 0;
+      const newTime = curr.time + edge.time + penalty;
+
+      if (newTime < (best.get(edge.to) ?? Infinity)) {
+        pq.push({
+          station: edge.to,
+          time: newTime,
+          lastLine: edge.line.id,
+          steps: [...curr.steps, { from: curr.station, to: edge.to, line: edge.line, time: edge.time }]
+        });
+      }
+    }
+  }
+
+  if (!winner) {
+    output.innerHTML = '<b>Aucun itinéraire trouvé.</b>';
+    return;
+  }
+
+  const legs = [];
+  for (const step of winner.steps) {
+    const last = legs[legs.length - 1];
+    if (last && last.line.id === step.line.id) {
+      last.to = step.to;
+      last.time += step.time;
+    } else {
+      legs.push({ ...step });
+    }
+  }
+
+  const fmt = s => `${Math.floor(s/60)} min`;
+
+  let html = `<h3 style="font-family:'Cinzel',serif; margin-top:0; color:var(--navy-royal);">Feuille de Route</h3>`;
+  html += `<p style="font-size:14px;"><strong>${start}</strong> → <strong>${end}</strong></p>`;
+  html += `<p><strong style="font-size:26px; color:var(--gold-dark);">${fmt(winner.time)}</strong> <span style="font-size:12px; color:#64748b;">(temps de parcours)</span></p>`;
+
+  legs.forEach(l => {
+    const logoFrom = cityLogos[l.from] ? `<img src="${cityLogos[l.from]}" class="city-badge">` : '';
+    const logoTo = cityLogos[l.to] ? `<img src="${cityLogos[l.to]}" class="city-badge">` : '';
+
+    html += `
+      <div class="leg-card" style="border-left-color:${l.line.color}">
+        <b style="color:var(--navy-royal); font-family:'Cinzel',serif;">${l.line.name}</b>
+        <div class="city-badge-container">
+          ${logoFrom} <span>${l.from}</span> → ${logoTo} <span>${l.to}</span>
+        </div>
+        <div style="font-size:12px; color:#64748b;">Durée : ${fmt(l.time)}</div>
+      </div>
+    `;
+  });
+
+  output.innerHTML = html;
+}
+</script>
+
+</body>
+</html>
